@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
 import com.zappvtltd.zapdaily.Home.HomePage;
 
 import java.util.concurrent.TimeUnit;
@@ -67,6 +69,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void verifyUser() {
+        final AlertDialog dialog = ProgressDialogLoading.getLoadingDialog(LoginActivity.this, "Sending Otp..");
+        dialog.show();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phone,
                 60,
@@ -94,6 +98,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     @Override
                     public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
+                        dialog.dismiss();
                         mVerificationId = s;
                         mResendToken = forceResendingToken;
                         openDialog(mVerificationId);
@@ -112,7 +117,6 @@ public class LoginActivity extends AppCompatActivity {
         Bundle bundle =new Bundle();
         bundle.putString("verificationId",otpkey);
         otpVerificationFragment.setArguments(bundle);
-        otpVerificationFragment.setCancelable(true);
     }
 
 //    @Override

@@ -25,6 +25,7 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
 import com.zappvtltd.zapdaily.Home.HomePage;
 
 import java.util.concurrent.Executor;
@@ -67,7 +68,7 @@ public class OtpVerificationFragment extends AppCompatDialogFragment {
         verify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                listner.fetchOtp(OTP);
+
                 PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, OTP);
                 signInWithPhoneAuthCredential(credential);
 
@@ -81,20 +82,27 @@ public class OtpVerificationFragment extends AppCompatDialogFragment {
             }
         });
 
+        builder.create().setCanceledOnTouchOutside(false);
+
         return builder.create();
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
+        final android.app.AlertDialog dialog = ProgressDialogLoading.getLoadingDialog(getActivity(), "Verifying Otp..");
+        dialog.show();
+
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+                            dialog.dismiss();
                             // Sign in success, update UI with the signed-in user's information
                             startActivity(new Intent(getActivity(),HomePage.class)
                                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
                             // ...
                         } else {
+                            dialog.dismiss();
                             // Sign in failed, display a message and update the UI
                             Toast.makeText(getContext(),"Failed Try again later. ",Toast.LENGTH_SHORT).show();
 
