@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "731397037489",
+    "firebase_url": "https://zapdaily-7bdc0.firebaseio.com",
+    "project_id": "zapdaily-7bdc0",
+    "storage_bucket": "zapdaily-7bdc0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:731397037489:android:29b23f550894d412f3f190",
+        "android_client_info": {
+          "package_name": "com.zappvtltd.zapdaily"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "731397037489-k4l8m7tj1si29rnip3846kr6lh1dnc0n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.zappvtltd.zapdaily",
+            "certificate_hash": "591f8ef984a31b85ffb8bb48f20852c5f15262eb"
+          }
+        },
+        {
+          "client_id": "731397037489-jm8jt5uv85fvn86l3vjs34230e9flot2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcSOL7JsIgrxKCnnnpfcHNZz-MZwDvAbE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "731397037489-jm8jt5uv85fvn86l3vjs34230e9flot2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

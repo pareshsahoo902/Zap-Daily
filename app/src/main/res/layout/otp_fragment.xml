@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+
+    >
+    
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/rounded_button_lessround"
+        >
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimaryDark"
+            android:fontFamily="@font/ubuntu"
+            android:textSize="25dp"
+            android:text="Verify Your OTP"
+            android:layout_gravity="center|top"
+            android:padding="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:text="Please enter your OTP here .\n Press resend if you have not recived it yet."
+            android:textAllCaps="false"
+            android:gravity="center"
+            android:fontFamily="@font/ubunturegular"
+            android:layout_gravity="center"
+            android:textSize="11dp"
+            android:textColor="@color/colorPrimary"
+            android:minLines="2"
+            />
+
+        <com.dpizarro.pinview.library.PinView
+            android:id="@+id/pinview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="65dp"
+            app:numberPinBoxes="6"
+            app:keyboardMandatory="false"
+            app:deleteOnClick="false"
+            app:password="false"
+
+            />
+        <TextView
+            android:id="@+id/resendotp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESEND OTP"
+            android:layout_marginRight="15dp"
+            android:layout_gravity="center|right"
+            android:textSize="15dp"
+            android:textColor="@color/colorPrimary"/>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/verifyotp"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            app:cardElevation="7dp"
+            app:cardBackgroundColor="#9C27B0"
+            app:cardCornerRadius="25dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Verify"
+                android:fontFamily="@font/ubunturegular"
+                android:layout_gravity="center"
+                android:textSize="14dp"
+                android:textColor="@android:color/white"/>
+
+        </androidx.cardview.widget.CardView>
+
+
+
+    </FrameLayout>
+
+    
+
+</FrameLayout>
