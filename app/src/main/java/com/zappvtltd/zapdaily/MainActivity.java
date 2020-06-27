@@ -37,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     private void authenticateUser() {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser!=null){
-            startActivity(new Intent(MainActivity.this,HomePage.class));
+            startActivity(new Intent(MainActivity.this,HomePage.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
         }else {
-            startActivity(new Intent(MainActivity.this,LoginActivity.class));
+            startActivity(new Intent(MainActivity.this,LoginActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
 
         }
     }
