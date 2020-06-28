@@ -79,11 +79,13 @@ public class LoginActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                        dialog.dismiss();
 
                     }
 
                     @Override
                     public void onVerificationFailed(@NonNull FirebaseException e) {
+                        dialog.dismiss();
 
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(getApplicationContext(),"Invalid Number",Toast.LENGTH_SHORT).show();

@@ -36,6 +36,7 @@ public class OtpVerificationFragment extends AppCompatDialogFragment {
     private TextView resendOtp;
     private FirebaseAuth mAuth;
     String OTP,mVerificationId;
+    static AlertDialog alertDialog;
 
     @NonNull
     @Override
@@ -82,9 +83,10 @@ public class OtpVerificationFragment extends AppCompatDialogFragment {
             }
         });
 
-        builder.create().setCanceledOnTouchOutside(false);
+        alertDialog = builder.create();
+        alertDialog.setCanceledOnTouchOutside(false);
 
-        return builder.create();
+        return alertDialog;
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
