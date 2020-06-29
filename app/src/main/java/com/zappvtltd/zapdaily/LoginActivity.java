@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     CardView login, skip;
     EditText phone_number, name;
     FirebaseAuth mAuth;
-    String mVerificationId, otpCode, phone;
+    String mVerificationId, phone;
     PhoneAuthProvider.ForceResendingToken mResendToken;
 
 
@@ -79,19 +79,20 @@ public class LoginActivity extends AppCompatActivity {
                 new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                     @Override
                     public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                        dialog.dismiss();
 
                     }
 
                     @Override
                     public void onVerificationFailed(@NonNull FirebaseException e) {
-                        dialog.dismiss();
+
 
                         if (e instanceof FirebaseAuthInvalidCredentialsException) {
                             Toast.makeText(getApplicationContext(),"Invalid Number",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
 
                         } else if (e instanceof FirebaseTooManyRequestsException) {
                             Toast.makeText(getApplicationContext(),"Phone Number In use. ",Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
 
                         }
 
@@ -121,9 +122,5 @@ public class LoginActivity extends AppCompatActivity {
         otpVerificationFragment.setArguments(bundle);
     }
 
-//    @Override
-//    public void fetchOtp(String fetchedOtp) {
-//        otpCode = fetchedOtp;
-//
-//    }
+
 }
