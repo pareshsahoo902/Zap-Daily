@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center">
 
     <LinearLayout
@@ -30,29 +31,43 @@
                 android:textSize="35dp"
                 android:textColor="#E6FFFFFF"
                 />
-            <ImageView
+            <androidx.cardview.widget.CardView
+                android:id="@+id/ProPicCard"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:background="@drawable/user_placeholder"
-                android:layout_gravity="center"/>
+                app:cardCornerRadius="100dp"
+                app:cardElevation="10dp"
+                android:layout_gravity="center"
+                >
+                <ImageView
+                    android:id="@+id/propic"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/user_placeholder"
+                    />
+
+            </androidx.cardview.widget.CardView>
+
             <TextView
+                android:id="@+id/user_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Paresh Sahoo"
                 android:fontFamily="@font/ubunturegular"
                 android:layout_gravity="center|bottom"
                 android:textSize="15dp"
-                android:textColor="@android:color/secondary_text_dark_nodisable"
+                android:textColor="#EEFFFFFF"
                 android:layout_marginBottom="30dp"/>
 
             <TextView
+                android:id="@+id/user_phone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="+91-8917351934"
                 android:fontFamily="@font/ubunturegular"
                 android:layout_gravity="center|bottom"
                 android:textSize="15dp"
-                android:textColor="@android:color/secondary_text_dark"
+                android:textColor="#E4FFFFFF"
                 android:layout_marginBottom="15dp"/>
 
         </androidx.cardview.widget.CardView>

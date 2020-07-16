@@ -23,23 +23,23 @@ public class ProgressDialogLoading extends DialogFragment {
 
     static AlertDialog alertDialog;
 
-    public static AlertDialog getCodeSendingDialog(Activity activity){
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        LayoutInflater inflater = activity.getLayoutInflater();
-        View dialogLayout = inflater.inflate(R.layout.dialogloader, null);
-
-        TextView MSG =  dialogLayout.findViewById(R.id.text);
-        MSG.setText("Sending Code");
-        builder.setView(dialogLayout);
-
-        alertDialog =  builder.create();
-        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        alertDialog.setCanceledOnTouchOutside(false);
-        alertDialog.setCancelable(false);
-
-        return alertDialog;
-    }
+//    public static AlertDialog getCodeSendingDialog(Activity activity){
+//
+//        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
+//        LayoutInflater inflater = activity.getLayoutInflater();
+//        View dialogLayout = inflater.inflate(R.layout.dialogloader, null);
+//
+//        TextView MSG =  dialogLayout.findViewById(R.id.text);
+//        MSG.setText("Sending Code");
+//        builder.setView(dialogLayout);
+//
+//        alertDialog =  builder.create();
+//        alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        alertDialog.setCanceledOnTouchOutside(false);
+//        alertDialog.setCancelable(false);
+//
+//        return alertDialog;
+//    }
 
     public static AlertDialog getLoadingDialog(Activity activity, String MSGText){
 

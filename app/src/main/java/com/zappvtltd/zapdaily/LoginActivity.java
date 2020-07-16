@@ -22,10 +22,13 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
 import com.zappvtltd.zapdaily.Home.HomePage;
 
 import java.util.concurrent.TimeUnit;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -51,26 +54,36 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                phone = "+91"+phone_number.getText().toString();
-                verifyUser();
+        PushDownAnim.setPushDownAnimTo(login,skip)
+                .setScale(MODE_SCALE,
+                PushDownAnim.DEFAULT_PUSH_SCALE)
 
-            }
-        });
-        skip.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this,HomePage.class)
-                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
-            }
-        });
+                .setDurationPush(PushDownAnim.DEFAULT_PUSH_DURATION)
+                .setDurationRelease(PushDownAnim.DEFAULT_RELEASE_DURATION)
+                .setInterpolatorPush(PushDownAnim.DEFAULT_INTERPOLATOR)
+                .setInterpolatorRelease(PushDownAnim.DEFAULT_INTERPOLATOR)
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        switch (view.getId()){
+                            case R.id.Card_Login:
+                                verifyUser();
+                                break;
+                            case R.id.Card_SKIP:
+                                startActivity(new Intent(LoginActivity.this,HomePage.class)
+                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                break;
+
+                        }
+
+                    }
+                });
     }
 
     private void verifyUser() {
         final AlertDialog dialog = ProgressDialogLoading.getLoadingDialog(LoginActivity.this, "Sending Otp..");
         dialog.show();
+        phone = "+91"+phone_number.getText().toString();
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 phone,
                 60,
@@ -90,6 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(),"Invalid Number",Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
 
+
                         } else if (e instanceof FirebaseTooManyRequestsException) {
                             Toast.makeText(getApplicationContext(),"Phone Number In use. ",Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
@@ -104,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
                         dialog.dismiss();
                         mVerificationId = s;
                         mResendToken = forceResendingToken;
-                        openDialog(mVerificationId);
+                        openOTPDialog(mVerificationId);
                     }
                 }
         );
@@ -113,12 +127,15 @@ public class LoginActivity extends AppCompatActivity {
 
 
 
-    private void openDialog(String otpkey) {
+    private void openOTPDialog(String otpkey) {
 
         OtpVerificationFragment otpVerificationFragment =new OtpVerificationFragment();
         otpVerificationFragment.show(getSupportFragmentManager(),"verify-otp");
+        String username = name.getText().toString();
         Bundle bundle =new Bundle();
         bundle.putString("verificationId",otpkey);
+        bundle.putString("name",username);
+        bundle.putString("phone",phone_number.getText().toString());
         otpVerificationFragment.setArguments(bundle);
     }
 
