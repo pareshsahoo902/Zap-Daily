@@ -90,10 +90,95 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+
+
     <string name="action_settings">Settings</string>
     <string-array name="Gender">
         <item>Male</item>
         <item>Female</item>
         <item>Others</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="group1">1. How does the subscription work?</string>
+    <string name="group2">2. Do you deliver in my area?</string>
+    <string name="group3">3. Is there a delivery charge?</string>
+    <string name="group4">4. Which milk brands do you deliver?</string>
+    <string name="group5">5. I need delivery at 6am in the morning .Is it possible?</string>
+    <string name="group6">6. How can I change the quantity for the next day?What if I am going for a vacation?</string>
+    <string name="group7">7. What payment method can I use?</string>
+    <string name="group8">8. What’s your cancellation policy?</string>
+    <string name="group9">9. I have not received OTP for account creation/sign in.What do I do?</string>
+    <string name="group10">10. What is the minimum quantity of milk I can order?</string>
+    <string name="group11">11. Do you deliver in the afternoon/evening time?</string>
+    <string name="group12">12. How do I cancel all my subscriptions and refund the amount to my account?</string>
+    <string name="group13">13. How do I contact the customer service?</string>
+    <string name="group14">14. I’d like to provide feedback?</string>
+    <string name="group15">15. How can I reduce the service charge included in the express delivery?</string>
+
+
+    <string-array name="group1">
+        <item>You just have to select your item and quantity of the selected product and select the frequency of the delivery and make payment accordingly.
+            After making payment you only have to relax and get your product delivered to you.</item>
+    </string-array>
+
+    <string-array name="group2">
+        <item>As for now we have a certain set of pin codes in which the delivery of products are conducted.You
+      can check while registering with the app after downloading it.</item>
+    </string-array>
+
+    <string-array name="group3">
+        <item>There is a minimal delivery charge of Rs10 only for the express delivery option in which customers can get the products delivered at the same day itself.Otherwise there is no amount charged for the products delivered under the normal subscription option.</item>
+    </string-array>
+
+    <string-array name="group4">
+        <item>We deliver milk brands such as OMFED,Milky Moo, Pragati.You can see the full list on our app or contact us on 7008842784.</item>
+    </string-array>
+
+    <string-array name="group5">
+        <item>We deliver all orders between 6-8am in the morning.However we cannot promise an exact time of delivery. Due to unexpected situations, if our delivery extends beyond 8 am, we will notify you as early as possible.</item>
+    </string-array>
+
+    <string-array name="group6">
+        <item>You can simply change the quantity for next day on our app or pause all deliveries for your vacation duration.Our transparent service has been created so that you only pay for what you consume.</item>
+    </string-array>
+
+    <string-array name="group7">
+        <item>We currently support Google Pay as UPI,Cash payment option.</item>
+    </string-array>
+
+    <string-array name="group8">
+        <item>You can cancel anytime before 8pm on the day before delivery,with just a few steps on the app.</item>
+    </string-array>
+
+    <string-array name="group9">
+        <item>Please feel free to call us at 7008842784 or let us know through chat.</item>
+    </string-array>
+
+    <string-array name="group10">
+        <item>You can subscribe with us for any quantity of milk, starting from 0.5L.</item>
+    </string-array>
+
+    <string-array name="group11">
+        <item>Most of deliveries are made at morning,between 6-8am.we can deliver products in afternoon/evening under express delivery in which you get the delivery on the same day of order for which we charge a minimal amount of Rs 10.</item>
+    </string-array>
+
+    <string-array name="group12">
+        <item>Any subscription cancelled is refunded to the customers original mode of payment within 7 to 9 business working days.</item>
+    </string-array>
+
+    <string-array name="group13">
+        <item>You can call us at 7008842784 or chat with us between 8am to 12 am.</item>
+    </string-array>
+
+    <string-array name="group14">
+        <item>We truly value feedback from our customers.Please email us</item>
+    </string-array>
+
+    <string-array name="group15">
+        <item>If you are looking to place an order for a day,adding more items to cart will be beneficial for you as the charge is per delivery, not per product.</item>
+    </string-array>
+
+
 </resources>

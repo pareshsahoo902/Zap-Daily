@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,15 +7,20 @@
     tools:context=".DrawerUI.ContactUS">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        app:cardElevation="10dp"
         app:cardBackgroundColor="#fff"
-        app:cardCornerRadius="0dp">
+        app:cardCornerRadius="0dp"
+        app:cardElevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/homegradient"/>
+            android:src="@drawable/homegradient" />
 
 
         <ImageView
@@ -24,27 +29,50 @@
             android:layout_height="30dp"
             android:layout_gravity="center|left"
             android:layout_marginLeft="20dp"
+            android:padding="3dp"
             android:src="@drawable/back"
-            android:tint="#fff"
-            android:padding="3dp" />
+            android:tint="#fff" />
+
         <ImageView
             android:id="@+id/cart_contactus"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_gravity="center|right"
             android:layout_marginRight="20dp"
+            android:padding="3dp"
             android:src="@drawable/cart_black"
-            android:tint="#fff"
-            android:padding="3dp" />
+            android:tint="#fff" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Contact Us"
-            android:fontFamily="@font/ubunturegular"
             android:layout_gravity="center"
+            android:fontFamily="@font/ubunturegular"
+            android:text="Contact Us"
             android:textColor="#fff"
-            android:textSize="15dp"/>
+            android:textSize="15dp" />
     </androidx.cardview.widget.CardView>
 
-</RelativeLayout>
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#6727B0"
+        android:elevation="10dp"
+        app:tabIndicatorColor="@android:color/white"
+        app:tabRippleColor="@android:color/holo_purple"
+        app:tabTextColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
