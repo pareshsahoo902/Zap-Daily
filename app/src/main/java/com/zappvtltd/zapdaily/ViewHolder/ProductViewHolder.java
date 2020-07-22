@@ -19,5 +19,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder {
         add=(ImageView)itemView.findViewById(R.id.addcart);
         p_name=(TextView) itemView.findViewById(R.id.pnametext);
         p_price=(TextView) itemView.findViewById(R.id.ppricetext);
+
     }
 }

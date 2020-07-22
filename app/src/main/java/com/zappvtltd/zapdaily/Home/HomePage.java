@@ -81,30 +81,21 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
     ImageView Image_LoggedInUserProfilePicture;
     NavigationView nv;
     FrameLayout searchBox;
+    RecyclerView homepageRecycler;
     LinearLayout locationBox;
     TextView locationText, Text_LoggedInUsername, Text_LoggedInUserPhone;
     FrameLayout NV_home, NV_ContactUs, NV_about, NV_Subscriptions, NV_Cart, NV_SavedItems, NV_Account, NV_LogOut;
 
-    Timer timer;
-    final private long DELAY_TIME = 3000;
-    final private long PERIOD_TIME = 3000;
-    ViewPager bannerpage;
-    DotsIndicator dotsIndicator;
+
     private List<SliderModel> sliderModelList;
-    private int current_page = 2;
 
     private ArrayList<CategoryModel> arrayList;
     private FirebaseRecyclerOptions<CategoryModel> options;
-    private FirebaseRecyclerAdapter<CategoryModel, CategoryViewHolder> adapter;
+    private FirebaseRecyclerAdapter<CategoryModel, CategoryViewHolder> categoryadapter;
 
-    private FirebaseRecyclerOptions<ProductModel> productoptions;
-    private FirebaseRecyclerAdapter<ProductModel, ProductViewHolder> productadapter;
-
-    private FirebaseRecyclerOptions<BrandModel> brandoptions;
-    private FirebaseRecyclerAdapter<BrandModel, BrandViewHolder> brandadapter;
 
     LocationManager locationManager;
-    RecyclerView recyclerView, product_recycler,grid_recycler,brand_recycler;
+    RecyclerView recyclerView;
     private static final int REQUEST_LOCATION = 1;
     private double latitude;
     private double longitude;
@@ -125,9 +116,6 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
             e.printStackTrace();
         }
 
-        bannerpage = (ViewPager) findViewById(R.id.viewPager);
-        dotsIndicator = (DotsIndicator) findViewById(R.id.dots_indicator);
-
 
         sliderModelList = new ArrayList<SliderModel>();
 
@@ -142,47 +130,7 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
 
         sliderModelList.add(new SliderModel(R.drawable.banner_1));
         sliderModelList.add(new SliderModel(R.drawable.banner_2));
-        SliderAdapter sliderAdapter = new SliderAdapter(sliderModelList);
-        bannerpage.setAdapter(sliderAdapter);
-        bannerpage.setClipToPadding(false);
-        bannerpage.setPageMargin(15);
-        dotsIndicator.setViewPager(bannerpage);
 
-
-        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                current_page = position;
-
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                if (state == ViewPager.SCROLL_STATE_IDLE) {
-                    pageLooper();
-                }
-
-            }
-        };
-        bannerpage.addOnPageChangeListener(onPageChangeListener);
-        startBannerSlideshow();
-
-        bannerpage.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                pageLooper();
-                stopBannerSlideshow();
-                if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    startBannerSlideshow();
-                }
-                return false;
-            }
-        });
 
         // initialize the homepage fields
         notification = (ImageView) findViewById(R.id.NotificationButton);
@@ -218,21 +166,31 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
         recyclerView.setHasFixedSize(true);
 
 
-        product_recycler = findViewById(R.id.product_recycler_view);
-        product_recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        product_recycler.setHasFixedSize(true);
+        //////////HOMEPAGE   RECYCLER
 
-        grid_recycler = findViewById(R.id.gridRecycler);
-        grid_recycler.setLayoutManager(new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false));
-        product_recycler.setHasFixedSize(true);
+        homepageRecycler=(RecyclerView)findViewById(R.id.homepage_recycler);
+        homepageRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        brand_recycler = findViewById(R.id.similarproductrecycler);
-        brand_recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        brand_recycler.setHasFixedSize(true);
+        List<HomePageModel> homePageModelList = new ArrayList<>();
+        homePageModelList.add(new HomePageModel(0,sliderModelList));
+        homePageModelList.add(new HomePageModel(1));
+        homePageModelList.add(new HomePageModel(2));
+        homePageModelList.add(new HomePageModel(3));
+        homePageModelList.add(new HomePageModel(2));
+        homePageModelList.add(new HomePageModel(3));
+
+
+        HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
+        homepageRecycler.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
+
+        //////////HOMEPAGE   RECYCLER
+
 
         loadRecyclerforCategory();
-        loadRecyclerforProduct();
-        loadRecyclerForBrand();
+//        loadRecyclerforProduct();
+//        loadRecyclerForBrand();
 
 
         PushDownAnim.setPushDownAnimTo(menu, notification, cart, NV_home,
@@ -437,83 +395,6 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
     }
 
 
-    private void loadRecyclerForBrand(){
-        DatabaseReference brandref= FirebaseDatabase.getInstance().getReference().child("brands");
-        brandoptions= new FirebaseRecyclerOptions.Builder<BrandModel>().setQuery(brandref,BrandModel.class).build();
-        brandadapter = new FirebaseRecyclerAdapter<BrandModel, BrandViewHolder>(brandoptions) {
-            @Override
-            protected void onBindViewHolder(@NonNull BrandViewHolder brandViewHolder, int i, @NonNull BrandModel brandModel) {
-                brandViewHolder.name.setText(brandModel.getB_name());
-                Picasso.with(getApplicationContext()).load(brandModel.getLogo()).into(brandViewHolder.logo);
-
-            }
-
-            @NonNull
-            @Override
-            public BrandViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new BrandViewHolder(LayoutInflater.from(getApplicationContext()).inflate(R.layout.brand_holder_view,parent,false));
-            }
-        };
-        brand_recycler.setAdapter(brandadapter);
-        brandadapter.startListening();
-
-    }
-
-    private void loadRecyclerforProduct() {
-        DatabaseReference productref = FirebaseDatabase.getInstance().getReference().child("products");
-        productoptions = new FirebaseRecyclerOptions.Builder<ProductModel>().setQuery(productref, ProductModel.class).build();
-        productadapter = new FirebaseRecyclerAdapter<ProductModel, ProductViewHolder>(productoptions) {
-            @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder productViewHolder, int i, @NonNull final ProductModel productModel) {
-                productViewHolder.p_name.setText(productModel.getProduct_name());
-                productViewHolder.p_price.setText("₹" + productModel.getProduct_price());
-                Picasso.with(getApplicationContext()).load(productModel.getImage1()).into(productViewHolder.image);
-
-                productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity(new Intent(HomePage.this, ViewProductPage.class).putExtra("pid",productModel.getPid()));
-                    }
-                });
-                productViewHolder.add.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        addProductToCart(productModel.getPid());
-                        Toast.makeText(HomePage.this, "Product added ! check Cart", Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-            }
-
-            @NonNull
-            @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                return new ProductViewHolder(LayoutInflater.from(getApplicationContext()).inflate(R.layout.product_items, parent, false));
-            }
-
-            @Override
-            public int getItemCount() {
-                if (super.getItemCount()<4){
-                    return 2;
-                }
-                else {
-                    return super.getItemCount();
-                }
-
-            }
-
-        };
-
-        product_recycler.setAdapter(productadapter);
-        grid_recycler.setAdapter(productadapter);
-        productadapter.startListening();
-
-    }
-
-    private void addProductToCart(String pid) {
-
-    }
-
     public void loadRecyclerforCategory() {
 
 
@@ -521,7 +402,7 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
 
         options = new FirebaseRecyclerOptions.Builder<CategoryModel>().setQuery(categoryRef, CategoryModel.class).build();
 
-        adapter = new FirebaseRecyclerAdapter<CategoryModel, CategoryViewHolder>(options) {
+        categoryadapter = new FirebaseRecyclerAdapter<CategoryModel, CategoryViewHolder>(options) {
             @Override
             protected void onBindViewHolder(@NonNull CategoryViewHolder categoryViewHolder, int i, @NonNull final CategoryModel categoryModel) {
 
@@ -544,53 +425,10 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
             }
         };
 
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(categoryadapter);
 
-        adapter.startListening();
-
-    }
-
-    private void pageLooper() {
-        if (current_page == sliderModelList.size() - 2) {
-            current_page = 2;
-            bannerpage.setCurrentItem(current_page, false);
-        }
-        if (current_page == 1) {
-            current_page = sliderModelList.size() - 3;
-            bannerpage.setCurrentItem(current_page, false);
-        }
+        categoryadapter.startListening();
 
     }
 
-    private void startBannerSlideshow() {
-        final Handler handler = new Handler();
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                if (current_page >= sliderModelList.size()) {
-                    current_page = 1;
-                }
-                bannerpage.setCurrentItem(current_page++, true);
-            }
-        };
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, DELAY_TIME, PERIOD_TIME);
-    }
-
-    private void stopBannerSlideshow() {
-        timer.cancel();
-    }
-
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        productadapter.startListening();
-        adapter.startListening();
-        brandadapter.startListening();
-    }
 }

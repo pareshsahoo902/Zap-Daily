@@ -1,53 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="130dp"
-    android:layout_height="150dp"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="12dp"
     android:layout_marginTop="3dp"
+    app:cardCornerRadius="7dp"
     android:layout_marginBottom="3dp"
-    android:layout_marginLeft="10dp"
+    android:layout_marginLeft="5dp"
     android:elevation="2dp">
     <ImageView
-        android:id="@+id/pimageview"
+        android:id="@+id/gridimageview"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="125dp"
         android:scaleType="centerCrop"
         android:background="@drawable/homegradient"
         android:layout_margin="5dp"/>
     <TextView
-        android:id="@+id/pnametext"
+        android:id="@+id/gridnametext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="name"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:layout_gravity="center|bottom|left"
-        android:layout_marginBottom="27dp"
-        android:layout_marginLeft="5dp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginLeft="15dp"
         android:textColor="@color/colorPrimary"
         android:fontFamily="@font/ubunturegular"
         />
     <TextView
-        android:id="@+id/ppricetext"
+        android:id="@+id/gridpricetext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="price"
-        android:textSize="10dp"
+        android:textSize="15dp"
         android:textColor="@color/colorPrimaryDark"
         android:layout_gravity="center|bottom|left"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:fontFamily="@font/ubunturegular"
+        android:layout_marginBottom="7dp"
+        android:layout_marginLeft="15dp"
+        android:fontFamily="@font/ubuntu"
         />
 
+
     <ImageView
-        android:id="@+id/addcart"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:id="@+id/gridaddcart"
+        android:layout_width="30dp"
+        android:layout_height="25dp"
         android:tint="@color/colorPrimaryDark"
         android:src="@drawable/cartadd"
         android:layout_gravity="bottom|right"
-        android:layout_margin="8dp"/>
+        android:layout_margin="5dp"/>
 
 
 

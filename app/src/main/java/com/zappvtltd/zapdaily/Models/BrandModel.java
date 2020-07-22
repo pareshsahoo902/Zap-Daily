@@ -1,16 +1,25 @@
 package com.zappvtltd.zapdaily.Models;
 
 public class BrandModel {
-    String b_name,b_type,logo;
+    String b_name,b_type,logo,brand_id;
 
-    public BrandModel(String b_name, String b_type, String logo) {
+    public BrandModel(String b_name, String b_type, String logo,String brand_id) {
         this.b_name = b_name;
         this.b_type = b_type;
         this.logo = logo;
+        this.brand_id = brand_id;
     }
 
     public BrandModel(){
 
+    }
+
+    public String getBrand_id() {
+        return brand_id;
+    }
+
+    public void setBrand_id(String brand_id) {
+        this.brand_id = brand_id;
     }
 
     public String getB_name() {
