@@ -1,11 +1,14 @@
 package com.zappvtltd.zapdaily.Home;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -22,7 +25,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.snapshot.IndexedNode;
 import com.squareup.picasso.Picasso;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.zappvtltd.zapdaily.Adapter.SliderAdapter;
+import com.zappvtltd.zapdaily.LoginActivity;
 import com.zappvtltd.zapdaily.Models.BrandModel;
 import com.zappvtltd.zapdaily.Models.ProductModel;
 import com.zappvtltd.zapdaily.Models.SliderModel;
@@ -38,6 +43,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import static androidx.core.content.ContextCompat.startActivity;
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class HomePageAdapter extends RecyclerView.Adapter {
 
@@ -145,14 +151,23 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                 protected void onBindViewHolder(@NonNull BrandViewHolder brandViewHolder, int i, @NonNull final BrandModel brandModel) {
                     brandViewHolder.name.setText(brandModel.getB_name());
                     Picasso.with(itemView.getContext()).load(brandModel.getLogo()).into(brandViewHolder.logo);
-                    brandViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            itemView.getContext().startActivity(new Intent(itemView.getContext(), ViewAllPage.class)
-                                    .putExtra("bid",brandModel.getBrand_id()));
+                    PushDownAnim.setPushDownAnimTo(brandViewHolder.itemView)
+                            .setScale(MODE_SCALE,
+                                    PushDownAnim.DEFAULT_PUSH_SCALE)
 
-                        }
-                    });
+                            .setDurationPush(PushDownAnim.DEFAULT_PUSH_DURATION)
+                            .setDurationRelease(PushDownAnim.DEFAULT_RELEASE_DURATION)
+                            .setInterpolatorPush(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setInterpolatorRelease(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent=new Intent(itemView.getContext(), ViewAllPage.class)
+                                            .putExtra("id",brandModel.getBrand_id());
+                                    ActivityOptions options = ActivityOptions.makeCustomAnimation(itemView.getContext(),R.anim.fade_in,R.anim.fade_out);
+                                    itemView.getContext().startActivity(intent,options.toBundle());
+                                }
+                            });
 
                 }
 
@@ -298,18 +313,31 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                     productViewHolder.p_price.setText("₹" + productModel.getProduct_price());
                     Picasso.with(itemView.getContext()).load(productModel.getImage1()).into(productViewHolder.image);
 
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.fade_in);
+                    animation.setDuration(500);
+                    productViewHolder.itemView.setAnimation(animation);
+
                     if (getItemCount()<7){
                         viewall.setVisibility(View.INVISIBLE);
 
                     }
-                    productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            itemView.getContext().startActivity
-                                    (new Intent(itemView.getContext(),ViewProductPage.class).putExtra("pid",productModel.getPid()));
+                    PushDownAnim.setPushDownAnimTo(productViewHolder.itemView)
+                            .setScale(MODE_SCALE,
+                                    PushDownAnim.DEFAULT_PUSH_SCALE)
 
-                        }
-                    });
+                            .setDurationPush(PushDownAnim.DEFAULT_PUSH_DURATION)
+                            .setDurationRelease(PushDownAnim.DEFAULT_RELEASE_DURATION)
+                            .setInterpolatorPush(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setInterpolatorRelease(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent=new Intent(itemView.getContext(),ViewProductPage.class).putExtra("pid",productModel.getPid());
+                                    ActivityOptions options = ActivityOptions.makeCustomAnimation(itemView.getContext(),R.anim.fade_in,R.anim.fade_out);
+                                    itemView.getContext().startActivity(intent,options.toBundle());
+                                }
+                            });
                     productViewHolder.add.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -366,7 +394,7 @@ public class HomePageAdapter extends RecyclerView.Adapter {
         }
         private void getProductGridRecycler(){
             DatabaseReference productref = FirebaseDatabase.getInstance().getReference().child("products");
-            productoptions = new FirebaseRecyclerOptions.Builder<ProductModel>().setQuery(productref.orderByChild("product_category").equalTo("paneer"), ProductModel.class).build();
+            productoptions = new FirebaseRecyclerOptions.Builder<ProductModel>().setQuery(productref.orderByChild("product_brand").equalTo("Amul"), ProductModel.class).build();
             productadapter = new FirebaseRecyclerAdapter<ProductModel, GridProductViewHolder>(productoptions) {
                 @Override
                 protected void onBindViewHolder(@NonNull final GridProductViewHolder productViewHolder, int i, @NonNull final ProductModel productModel) {
@@ -374,18 +402,32 @@ public class HomePageAdapter extends RecyclerView.Adapter {
                     productViewHolder.p_price.setText("₹" + productModel.getProduct_price());
                     Picasso.with(itemView.getContext()).load(productModel.getImage1()).into(productViewHolder.image);
 
+                    Animation animation;
+                    animation = AnimationUtils.loadAnimation(itemView.getContext(),R.anim.fade_in);
+                    animation.setDuration(500);
+                    productViewHolder.itemView.setAnimation(animation);
                     if (getItemCount()<5){
                         view_all.setVisibility(View.INVISIBLE);
 
                     }
-                    productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            itemView.getContext().startActivity
-                                    (new Intent(itemView.getContext(),ViewProductPage.class).putExtra("pid",productModel.getPid()));
+                    PushDownAnim.setPushDownAnimTo(productViewHolder.itemView)
+                            .setScale(MODE_SCALE,
+                                    PushDownAnim.DEFAULT_PUSH_SCALE)
 
-                        }
-                    });
+                            .setDurationPush(PushDownAnim.DEFAULT_PUSH_DURATION)
+                            .setDurationRelease(PushDownAnim.DEFAULT_RELEASE_DURATION)
+                            .setInterpolatorPush(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setInterpolatorRelease(PushDownAnim.DEFAULT_INTERPOLATOR)
+                            .setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    Intent intent=new Intent(itemView.getContext(),ViewProductPage.class).putExtra("pid",productModel.getPid());
+                                    ActivityOptions options = ActivityOptions.makeCustomAnimation(itemView.getContext(),R.anim.fade_in,R.anim.fade_out);
+                                    itemView.getContext().startActivity(intent,options.toBundle());
+                                }
+                            });
+
+
                     productViewHolder.add.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {

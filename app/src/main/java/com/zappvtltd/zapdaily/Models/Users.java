@@ -1,21 +1,30 @@
 package com.zappvtltd.zapdaily.Models;
 
 public class Users {
-    private String name,uid , phone_number ,password,pincode , Addres ,Profilepic_URL;
+    private String name,uid , phone_number ,password,pincode , Addres ,Profilepic_URL,wallet_balance;
 
     public Users()
     {
 
     }
 
-    public Users(String name, String phone_number, String password, String pincode, String addres, String uid, String Profilepic_URL) {
+    public Users(String name, String phone_number, String password, String pincode, String addres, String uid, String Profilepic_URL,String wallet_balance) {
         this.name = name;
         this.uid =uid;
         this.phone_number = phone_number;
         this.password = password;
         this.pincode = pincode;
         Addres = addres;
+        wallet_balance=this.wallet_balance;
         this.Profilepic_URL = Profilepic_URL;
+    }
+
+    public String getWallet_balance() {
+        return wallet_balance;
+    }
+
+    public void setWallet_balance(String wallet_balance) {
+        this.wallet_balance = wallet_balance;
     }
 
     public String getUid() {

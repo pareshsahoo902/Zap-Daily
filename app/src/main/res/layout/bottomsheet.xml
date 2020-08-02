@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="25dp"
+    android:elevation="7dp"
+    app:layout_behavior=""
+    android:backgroundTint="@color/colorPrimaryDark">
+
+    <ImageView
+        android:id="@+id/pic_image"
+        android:layout_width="110dp"
+        android:layout_height="120dp"
+        android:layout_gravity="left|top"
+        android:layout_margin="25dp"
+        android:elevation="7dp"
+        android:background="@drawable/placeholderproductmedium"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/nameptext"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="20dp"
+        android:text="Name"
+        android:textAllCaps="false"
+        android:textDirection="rtl"
+        android:fontFamily="@font/ubuntu"
+        android:layout_gravity="center|top|end"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="35dp"/>
+
+
+    <TextView
+        android:id="@+id/quantityptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/white"
+        android:textSize="17dp"
+        android:text="quantity"
+        android:layout_gravity="end"
+        android:fontFamily="@font/ubunturegular"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp"/>
+
+    <TextView
+        android:id="@+id/priceptext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="110dp"
+        android:layout_marginRight="10dp"
+        android:fontFamily="@font/ubunturegular"
+        android:text="price"
+        android:textColor="@android:color/white"
+        android:textSize="25dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="170dp"
+        >
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/bottom_tab"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            app:tabTextColor="@android:color/white"
+            app:tabTextAppearance="@font/ubunturegular"
+            app:tabRippleColor="@color/colorAccent"
+            app:tabIndicatorColor="@android:color/white"
+            />
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/bottom_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bottom_tab"
+            android:background="@android:color/white"/>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

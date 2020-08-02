@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp"
+    android:background="@drawable/rounded_button_lessround"
     >
     <TextView
         android:id="@+id/list_parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/colorPrimary"
-        android:textSize="17dp"
+        android:textSize="18dp"
         android:fontFamily="@font/ubuntu"
         android:paddingLeft="25dp"
         />

@@ -39,7 +39,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gridRecycler"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="380dp"
         android:layout_marginTop="5dp"
         android:scrollbars="vertical"
         app:spanCount="2"

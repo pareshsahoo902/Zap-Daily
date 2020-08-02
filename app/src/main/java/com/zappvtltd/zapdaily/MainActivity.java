@@ -51,11 +51,15 @@ public class MainActivity extends AppCompatActivity {
             dialog.dismiss();
             startActivity(new Intent(MainActivity.this,HomePage.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            overridePendingTransition(R.anim.splashscreen_transiton_in,R.anim.splashscrren_transition_out);
+            finish();
 
         }else {
             dialog.dismiss();
             startActivity(new Intent(MainActivity.this,LoginActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+            overridePendingTransition(R.anim.splashscreen_transiton_in,R.anim.splashscrren_transition_out);
+            finish();
 
         }
     }

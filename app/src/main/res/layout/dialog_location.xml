@@ -6,11 +6,9 @@
     android:orientation="vertical">
 
     <FrameLayout
-        android:layout_gravity="center"
+        android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
         android:background="@drawable/rounded_button_lessround">
 
 

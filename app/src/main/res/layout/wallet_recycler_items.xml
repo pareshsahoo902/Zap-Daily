@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="3dp"
+    >
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_gravity="left|center"
+        android:src="@drawable/ic_coin"/>
+    <TextView
+        android:id="@+id/details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="13dp"
+        android:padding="5dp"
+        android:text="Money Added to Wallet"
+        android:layout_gravity="center|left"
+        android:fontFamily="@font/ubunturegular"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_marginLeft="30dp"/>
+
+    <TextView
+        android:id="@+id/amount"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|center"
+        android:textSize="17dp"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@android:color/holo_green_dark"
+        android:layout_marginRight="15dp"
+        android:text="amount"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#DDDDDD"
+        android:paddingTop="5dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="3dp"
+        />
+
+</FrameLayout>

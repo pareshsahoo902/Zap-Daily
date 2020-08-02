@@ -4,8 +4,11 @@ import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -34,6 +37,7 @@ public class LocationDialog extends AppCompatDialogFragment {
         final View dialogLayout = inflater.inflate(R.layout.dialog_location, null);
         builder.setView(dialogLayout);
 
+
         select=dialogLayout.findViewById(R.id.SelectButton);
         locationtext=dialogLayout.findViewById(R.id.Edit_Location);
 
@@ -51,6 +55,11 @@ public class LocationDialog extends AppCompatDialogFragment {
 
         alertDialog =  builder.create();
         alertDialog.setCanceledOnTouchOutside(false);
+        Window window = alertDialog.getWindow();
+        WindowManager.LayoutParams wlp = window.getAttributes();
+
+        wlp.gravity = Gravity.BOTTOM;
+        window.setAttributes(wlp);
 
         return alertDialog;
     }

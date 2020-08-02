@@ -17,7 +17,7 @@
         <FrameLayout
             android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
+            android:layout_height="115dp"
             android:background="@drawable/homegradient"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,8 +57,8 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:layout_marginTop="50dp">
+                android:layout_height="20dp"
+                android:layout_marginTop="45dp">
 
 
                 <LinearLayout
@@ -94,7 +94,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="83dp"
+                android:layout_marginTop="68dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/rounded_box"
                 android:backgroundTint="#16FFFFFF">
@@ -148,7 +148,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/Recyclerview_HorizontalCategory"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="62dp"
                 android:layout_marginLeft="55dp"
                 android:fadingEdge="vertical"
                 android:fadingEdgeLength="20dp"
@@ -171,10 +171,12 @@
             android:id="@+id/homepage_recycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="185dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout6" />
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout6"
+            app:layout_constraintVertical_bias="0.0" />
 
 
 
@@ -194,11 +196,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_marginTop="181dp">
+                android:layout_marginTop="165dp">
 
                 <FrameLayout
                     android:id="@+id/NV_Home"
@@ -355,7 +360,7 @@
                     android:background="#DDDDDD" />
 
                 <FrameLayout
-                    android:id="@+id/NV_About"
+                    android:id="@+id/NV_Wallet"
                     android:layout_width="match_parent"
                     android:layout_height="55dp">
 
@@ -364,14 +369,15 @@
                         android:layout_height="17dp"
                         android:layout_gravity="center|right"
                         android:layout_marginRight="30dp"
-                        android:src="@drawable/about" />
+                        android:src="@drawable/wallet"
+                        />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center|left"
                         android:layout_marginLeft="30dp"
-                        android:text="About"
+                        android:text="Wallet"
                         android:textColor="#525252"
                         android:fontFamily="@font/ubuntu"
                         android:textSize="11dp" />
@@ -408,6 +414,37 @@
                         android:textSize="11dp" />
 
                 </FrameLayout>
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:background="#DDDDDD" />
+
+                <FrameLayout
+                    android:id="@+id/NV_About"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp">
+
+                    <ImageView
+                        android:layout_width="17dp"
+                        android:layout_height="17dp"
+                        android:layout_gravity="center|right"
+                        android:layout_marginRight="30dp"
+                        android:src="@drawable/about" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|left"
+                        android:layout_marginLeft="30dp"
+                        android:text="About"
+                        android:textColor="#525252"
+                        android:fontFamily="@font/ubuntu"
+                        android:textSize="11dp" />
+
+                </FrameLayout>
+
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -440,7 +477,10 @@
 
                 </FrameLayout>
 
+
             </LinearLayout>
+
+            </ScrollView>
 
             <FrameLayout
                 android:layout_width="match_parent"

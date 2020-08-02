@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".BottomSheetUI.BottomFragFrequency">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/ubunturegular"
+        android:textSize="17dp"
+        android:text="Please tell us how conveniently \nyou want this product."
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:padding="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Frequency:"
+            android:gravity="center"
+            android:layout_gravity="center_vertical"
+            android:fontFamily="@font/ubunturegular"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/frequencyspinner"
+            android:layout_width="180dp"
+            android:layout_height="35dp"
+            android:elevation="13dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:prompt="@array/frequency"
+            android:tooltipText="Frequency" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/customlayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:padding="15dp"
+        android:visibility="invisible"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Days:"
+            android:gravity="center"
+            android:fontFamily="@font/ubunturegular"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="17dp"
+            android:layout_marginRight="45dp"
+            android:layout_marginLeft="10dp"
+            />
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:orientation="vertical"
+           android:layout_marginLeft="40dp">
+
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Monday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Tuesday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Wednesday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Thursday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Friday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Saturday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+               <RadioButton
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text=" Sunday "
+                   android:fontFamily="@font/ubuntu"
+                   android:textColor="@color/colorPrimary"
+                   android:textSize="13dp"
+                   android:checked="false"
+                   />
+
+
+       </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="90dp"
+        android:layout_gravity="bottom|center"
+        android:textColor="@color/colorPrimaryDark"
+        android:fontFamily="@font/ubunturegular"
+        android:textSize="15dp"
+        android:textAlignment="center"
+        android:text="Note: This product will be delivred to you \naccording to your convenice .\n \nTimming :7:00AM - 10:00AM"
+        />
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_Save"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_margin="20dp"
+        android:layout_gravity="bottom"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/ubunturegular"
+            android:text="Proceed to payment"
+            android:textColor="#FFFFFF"
+            android:textSize="17dp" />
+
+    </androidx.cardview.widget.CardView>
+
+</FrameLayout>

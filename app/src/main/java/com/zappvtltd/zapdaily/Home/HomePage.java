@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
+import android.app.ActivityOptions;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,6 +25,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,6 +48,7 @@ import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.zappvtltd.zapdaily.Adapter.SliderAdapter;
 import com.zappvtltd.zapdaily.DialogHelper.LocationDialog;
 import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
+import com.zappvtltd.zapdaily.DrawerUI.About;
 import com.zappvtltd.zapdaily.DrawerUI.Account;
 import com.zappvtltd.zapdaily.DrawerUI.Cart;
 import com.zappvtltd.zapdaily.DrawerUI.ContactUS;
@@ -57,7 +61,9 @@ import com.zappvtltd.zapdaily.Models.BrandModel;
 import com.zappvtltd.zapdaily.Models.CategoryModel;
 import com.zappvtltd.zapdaily.Models.ProductModel;
 import com.zappvtltd.zapdaily.Models.SliderModel;
+import com.zappvtltd.zapdaily.PaymentActivity;
 import com.zappvtltd.zapdaily.R;
+import com.zappvtltd.zapdaily.ViewAllPage;
 import com.zappvtltd.zapdaily.ViewHolder.BrandViewHolder;
 import com.zappvtltd.zapdaily.ViewHolder.CategoryViewHolder;
 import com.zappvtltd.zapdaily.ViewHolder.ProductViewHolder;
@@ -84,7 +90,7 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
     RecyclerView homepageRecycler;
     LinearLayout locationBox;
     TextView locationText, Text_LoggedInUsername, Text_LoggedInUserPhone;
-    FrameLayout NV_home, NV_ContactUs, NV_about, NV_Subscriptions, NV_Cart, NV_SavedItems, NV_Account, NV_LogOut;
+    FrameLayout NV_home, NV_ContactUs, NV_Wallet, NV_About, NV_Subscriptions, NV_Cart, NV_SavedItems, NV_Account, NV_LogOut;
 
 
     private List<SliderModel> sliderModelList;
@@ -117,21 +123,6 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
         }
 
 
-        sliderModelList = new ArrayList<SliderModel>();
-
-        sliderModelList.add(new SliderModel(R.drawable.banner_4));
-        sliderModelList.add(new SliderModel(R.drawable.banner_5));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner_1));
-        sliderModelList.add(new SliderModel(R.drawable.banner_2));
-        sliderModelList.add(new SliderModel(R.drawable.banner_3));
-        sliderModelList.add(new SliderModel(R.drawable.banner_4));
-        sliderModelList.add(new SliderModel(R.drawable.banner_5));
-
-        sliderModelList.add(new SliderModel(R.drawable.banner_1));
-        sliderModelList.add(new SliderModel(R.drawable.banner_2));
-
-
         // initialize the homepage fields
         notification = (ImageView) findViewById(R.id.NotificationButton);
         menu = (ImageView) findViewById(R.id.MenuButton);
@@ -146,6 +137,11 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
         View v = nv.getHeaderView(0);
 
 
+        recyclerView = findViewById(R.id.Recyclerview_HorizontalCategory);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerView.setHasFixedSize(true);
+        loadRecyclerforCategory();
+
         arrayList = new ArrayList<CategoryModel>();
         //nav fragments
         NV_home = nv.findViewById(R.id.NV_Home);
@@ -154,30 +150,40 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
         NV_SavedItems = nv.findViewById(R.id.NV_Saved);
         NV_Account = nv.findViewById(R.id.NV_Account);
         NV_ContactUs = nv.findViewById(R.id.NV_contactus);
-        NV_about = nv.findViewById(R.id.NV_About);
+        NV_Wallet = nv.findViewById(R.id.NV_Wallet);
+        NV_About = nv.findViewById(R.id.NV_About);
         NV_LogOut = nv.findViewById(R.id.NV_logout);
         Text_LoggedInUsername = v.findViewById(R.id.user_name);
         Text_LoggedInUserPhone = v.findViewById(R.id.user_phone);
         Image_LoggedInUserProfilePicture = v.findViewById(R.id.propic);
 
 
-        recyclerView = findViewById(R.id.Recyclerview_HorizontalCategory);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setHasFixedSize(true);
+        getUserInfo();
+        sliderModelList = new ArrayList<SliderModel>();
 
+        sliderModelList.add(new SliderModel(R.drawable.banner4));
+        sliderModelList.add(new SliderModel(R.drawable.banner5));
 
+        sliderModelList.add(new SliderModel(R.drawable.banner1));
+        sliderModelList.add(new SliderModel(R.drawable.banner2));
+        sliderModelList.add(new SliderModel(R.drawable.banner3));
+        sliderModelList.add(new SliderModel(R.drawable.banner4));
+        sliderModelList.add(new SliderModel(R.drawable.banner5));
+
+        sliderModelList.add(new SliderModel(R.drawable.banner1));
+        sliderModelList.add(new SliderModel(R.drawable.banner2));
         //////////HOMEPAGE   RECYCLER
 
-        homepageRecycler=(RecyclerView)findViewById(R.id.homepage_recycler);
+        homepageRecycler = (RecyclerView) findViewById(R.id.homepage_recycler);
         homepageRecycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         List<HomePageModel> homePageModelList = new ArrayList<>();
-        homePageModelList.add(new HomePageModel(0,sliderModelList));
+        homePageModelList.add(new HomePageModel(0, sliderModelList));
         homePageModelList.add(new HomePageModel(1));
         homePageModelList.add(new HomePageModel(2));
         homePageModelList.add(new HomePageModel(3));
         homePageModelList.add(new HomePageModel(2));
-        homePageModelList.add(new HomePageModel(3));
+        homePageModelList.add(new HomePageModel(1));
 
 
         HomePageAdapter adapter = new HomePageAdapter(homePageModelList);
@@ -188,13 +194,8 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
         //////////HOMEPAGE   RECYCLER
 
 
-        loadRecyclerforCategory();
-//        loadRecyclerforProduct();
-//        loadRecyclerForBrand();
-
-
         PushDownAnim.setPushDownAnimTo(menu, notification, cart, NV_home,
-                NV_Subscriptions, NV_Cart, NV_SavedItems, NV_Account, NV_ContactUs, NV_about, NV_LogOut,
+                NV_Subscriptions, NV_Cart, NV_SavedItems, NV_Account, NV_About, NV_ContactUs, NV_Wallet, NV_LogOut,
                 searchBox, locationBox)
                 .setScale(MODE_SCALE,
                         PushDownAnim.DEFAULT_PUSH_SCALE)
@@ -273,13 +274,18 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
 
                                 break;
 
-                            case R.id.NV_About:
+                            case R.id.NV_Wallet:
 
                                 dl.closeDrawer(Gravity.LEFT);
-//                                Intent about = new Intent(getApplicationContext(), About.class);
-//                                startActivity(about);
+                                Intent wallet = new Intent(getApplicationContext(), PaymentActivity.class);
+                                startActivity(wallet);
+                                break;
 
 
+                            case R.id.NV_About:
+                                dl.closeDrawer(Gravity.LEFT);
+                                Intent about = new Intent(getApplicationContext(), About.class);
+                                startActivity(about);
                                 break;
 
                             case R.id.NV_logout:
@@ -298,18 +304,15 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
 
                                 break;
                             case R.id.locationbox:
-//                                openLocationDialog();
+                                openLocationDialog();
 
 
                         }
                     }
                 });
 
-        getUserInfo();
-
 
     }
-
 
 
     private void getUserInfo() {
@@ -398,7 +401,7 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
     public void loadRecyclerforCategory() {
 
 
-        DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference().child("category");
+        final DatabaseReference categoryRef = FirebaseDatabase.getInstance().getReference().child("category");
 
         options = new FirebaseRecyclerOptions.Builder<CategoryModel>().setQuery(categoryRef, CategoryModel.class).build();
 
@@ -409,11 +412,18 @@ public class HomePage extends AppCompatActivity implements android.location.Loca
                 categoryViewHolder.categoryname.setText(categoryModel.getCategory_name().toLowerCase());
                 Picasso.with(getApplicationContext()).load(categoryModel.getIcon_url()).into(categoryViewHolder.categoryicon);
 
+                Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fade_in);
+                animation.setDuration(500);
+                categoryViewHolder.itemView.setAnimation(animation);
 
                 categoryViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getApplicationContext(), "category type is " + categoryModel.getCategory_type(), Toast.LENGTH_SHORT).show();
+
+                        Intent intent = new Intent(HomePage.this, ViewAllPage.class)
+                                .putExtra("id", categoryRef.getKey());
+                        ActivityOptions options = ActivityOptions.makeCustomAnimation(HomePage.this, R.anim.fade_in, R.anim.fade_out);
+                        startActivity(intent, options.toBundle());
                     }
                 });
             }

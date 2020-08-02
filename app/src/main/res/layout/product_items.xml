@@ -12,8 +12,8 @@
         android:id="@+id/pimageview"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:background="@drawable/homegradient"
+        android:scaleType="fitCenter"
+        android:background="@drawable/placeholderproductmedium"
         android:layout_margin="5dp"/>
     <TextView
         android:id="@+id/pnametext"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -20,11 +21,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
+import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
 import com.zappvtltd.zapdaily.Models.BrandModel;
 import com.zappvtltd.zapdaily.Models.ProductModel;
 import com.zappvtltd.zapdaily.ViewHolder.BrandViewHolder;
 import com.zappvtltd.zapdaily.ViewHolder.GridProductViewHolder;
+
+import static com.thekhaeng.pushdownanim.PushDownAnim.MODE_SCALE;
 
 public class ViewAllPage extends AppCompatActivity {
 
@@ -39,7 +43,7 @@ public class ViewAllPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_all_page);
 
-        bid=getIntent().getStringExtra("bid");
+        bid=getIntent().getStringExtra("id");
         DatabaseReference brandref = FirebaseDatabase.getInstance().getReference().child("brands").child(bid);
         brandref.addValueEventListener(new ValueEventListener() {
             @Override
@@ -80,15 +84,22 @@ public class ViewAllPage extends AppCompatActivity {
 
 
                 dialog.dismiss();
-                productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        startActivity
-                                (new Intent(ViewAllPage.this,ViewProductPage.class).putExtra("pid",
-                                        productModel.getPid()));
+                PushDownAnim.setPushDownAnimTo(productViewHolder.itemView)
+                        .setScale(MODE_SCALE,
+                                PushDownAnim.DEFAULT_PUSH_SCALE)
 
-                    }
-                });
+                        .setDurationPush(PushDownAnim.DEFAULT_PUSH_DURATION)
+                        .setDurationRelease(PushDownAnim.DEFAULT_RELEASE_DURATION)
+                        .setInterpolatorPush(PushDownAnim.DEFAULT_INTERPOLATOR)
+                        .setInterpolatorRelease(PushDownAnim.DEFAULT_INTERPOLATOR)
+                        .setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent=new Intent(getApplicationContext(),ViewProductPage.class).putExtra("pid",productModel.getPid()).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                ActivityOptions options = ActivityOptions.makeCustomAnimation(getApplicationContext(),R.anim.fade_in,R.anim.fade_out);
+                                startActivity(intent,options.toBundle());
+                            }
+                        });
                 productViewHolder.add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

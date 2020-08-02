@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         app:cardElevation="10dp"
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="0dp">
@@ -51,7 +51,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/pro_back"
         >
     </FrameLayout>
@@ -63,7 +63,7 @@
         android:layout_gravity="center"
         app:cardCornerRadius="100dp"
         app:cardElevation="14dp"
-        android:layout_marginTop="145dp"
+        android:layout_marginTop="135dp"
         android:layout_centerHorizontal="true"
         >
         <ImageView

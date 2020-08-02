@@ -6,16 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".ViewProductPage">
 
+    <ImageView
+        android:id="@+id/save_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/notsave"
+        android:tint="@color/colorPrimary"
+        android:tooltipText="save item"
+        app:layout_constraintBottom_toTopOf="@+id/Card_Subscribe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.894"
+        app:layout_constraintStart_toEndOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@+id/brand"
+        app:layout_constraintVertical_bias="0.322" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager_product"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="180dp"
         android:layout_marginStart="1dp"
         android:layout_marginTop="1dp"
         android:layout_marginEnd="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" >
+
+    </androidx.viewpager.widget.ViewPager>
 
     <FrameLayout
         android:id="@+id/dotsindicator_product"
@@ -84,51 +100,6 @@
         android:tint="@color/colorPrimary"/>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="4dp"
-        app:cardCornerRadius="7dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/homegradient" />
-
-        <TextView
-            android:id="@+id/add_cart"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center|left"
-            android:layout_margin="15dp"
-            android:fontFamily="@font/ubunturegular"
-            android:text="ADD TO CART"
-            android:textColor="@android:color/white"
-            android:textSize="20dp" />
-
-        <ImageView
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_margin="3dp"
-            android:background="@android:color/white" />
-
-        <TextView
-            android:id="@+id/subscribe"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center|right"
-            android:layout_margin="15dp"
-            android:fontFamily="@font/ubunturegular"
-            android:text="SUBSCRIBE"
-            android:textColor="@android:color/white"
-            android:textSize="20dp" />
-
-    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/textView6"
@@ -140,6 +111,7 @@
         android:fontFamily="@font/ubunturegular"
         android:textColor="@color/colorPrimary"
         android:textSize="22dp"
+        android:padding="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_name" />
 
@@ -151,9 +123,10 @@
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/ubunturegular"
         android:maxLines="4"
-        android:text="If you are looking to place an order for a day,adding more items to cart will be beneficial for you as the charge is per delivery, not per product"
+        android:text="If you  not per product"
         android:textColor="@color/colorPrimary"
         android:textSize="20dp"
+        android:padding="5dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintHorizontal_bias="0.0"
@@ -173,12 +146,13 @@
         app:textSize="6dp" />
 
     <FrameLayout
+        android:id="@+id/frameLayout7"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/elegantNumberButton">
+        app:layout_constraintTop_toBottomOf="@+id/Card_AddCart">
 
         <include layout="@layout/similar_products" />
     </FrameLayout>
@@ -190,11 +164,65 @@
         android:layout_marginEnd="16dp"
         android:text="brand"
         android:textSize="20dp"
+        android:padding="5dp"
         android:textColor="@color/colorPrimary"
-        android:fontFamily="@font/ubunturegular"
+        android:fontFamily="@font/ubuntu"
         app:layout_constraintBottom_toBottomOf="@+id/textView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView6" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_Subscribe"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp"
+        app:layout_constraintTop_toBottomOf="@+id/elegantNumberButton"
+        tools:layout_editor_absoluteX="0dp">
+
+        <TextView
+            android:id="@+id/subscribe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/ubunturegular"
+            android:text="Subscribe now"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Card_AddCart"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="@color/colorPrimaryDark"
+        app:cardCornerRadius="25dp"
+        app:cardElevation="5dp"
+        app:layout_constraintEnd_toEndOf="@+id/Card_Subscribe"
+        app:layout_constraintStart_toStartOf="@+id/Card_Subscribe"
+        app:layout_constraintTop_toBottomOf="@+id/Card_Subscribe">
+
+        <TextView
+            android:id="@+id/add_cart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:fontFamily="@font/ubunturegular"
+            android:text="Add To Cart"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp" />
+
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

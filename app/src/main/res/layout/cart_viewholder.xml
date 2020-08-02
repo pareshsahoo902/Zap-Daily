@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="12dp"
+    android:elevation="7dp"
+    android:layout_margin="5dp">
+
+    <ImageView
+        android:id="@+id/cartimage"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="25dp"
+        android:background="@drawable/placeholderproductmedium"
+        android:layout_gravity="start"
+        android:layout_marginLeft="25dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="end|center_vertical"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginBottom="35dp"
+        >
+
+    <TextView
+        android:id="@+id/namecart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Name :"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/ubunturegular"/>
+    <TextView
+        android:id="@+id/cartQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Quantity :"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/ubunturegular"/>
+    <TextView
+        android:id="@+id/cart_total_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="17dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="Total Price:"
+        android:layout_marginBottom="10dp"
+        android:fontFamily="@font/ubunturegular"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="140dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:fitsSystemWindows="true"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/remove"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="Remove"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/rounded_button_lessround"
+            android:fontFamily="@font/ubuntu"
+            android:layout_marginRight="5dp"
+            android:textSize="13dp"
+            />
+
+        <Button
+            android:id="@+id/save_item"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:text="Save Item"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/rounded_button_lessround"
+            android:fontFamily="@font/ubuntu"
+            android:textSize="13dp"
+            />
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

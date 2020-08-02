@@ -142,6 +142,7 @@ public class OtpVerificationFragment extends AppCompatDialogFragment {
                 HashMap<String, Object> hashMap= new HashMap<>();
                 hashMap.put("name",username);
                 hashMap.put("phone_number",phone_no);
+                hashMap.put("wallet_balance","0");
                 hashMap.put("uid",uid);
 
                 databaseReference.child("users").child(uid).updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {

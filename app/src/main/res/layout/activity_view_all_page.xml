@@ -9,7 +9,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView5"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         app:cardBackgroundColor="#fff"
         app:cardCornerRadius="0dp"
         app:cardElevation="10dp"
@@ -35,7 +35,7 @@
 
         <FrameLayout
             android:layout_width="350dp"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_marginLeft="50dp">
 
             <EditText
