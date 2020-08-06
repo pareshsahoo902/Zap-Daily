@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -21,8 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 import com.zappvtltd.zapdaily.ConfirmPayment;
+import com.zappvtltd.zapdaily.DrawerUI.Subscriptions;
 import com.zappvtltd.zapdaily.PaymentActivity;
 import com.zappvtltd.zapdaily.R;
+
+import java.util.HashMap;
+import java.util.UUID;
 
 
 public class BottomFragPay extends Fragment {
@@ -57,8 +63,8 @@ public class BottomFragPay extends Fragment {
                         if (snapshot.exists()){
                             int currentBalance=Integer.parseInt(snapshot.child("wallet_balance").getValue().toString());
                             if (currentBalance>=Integer.parseInt(totalamount)){
-                                startActivity(new Intent(getActivity(), ConfirmPayment.class).putExtra("totalamount",totalamount)
-                                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                                subscribeToProduct();
+
                             }
                             else {
                                 startActivity(new Intent(getActivity(), PaymentActivity.class).putExtra("totalamount",totalamount)
@@ -78,6 +84,22 @@ public class BottomFragPay extends Fragment {
         // Inflate the layout for this fragment
         fillUserDetails();
         return view;
+    }
+
+    private void subscribeToProduct() {
+        DatabaseReference subscribersref=FirebaseDatabase.getInstance().getReference();
+        final String subid=UUID.randomUUID().toString().substring(2,12);
+        HashMap<String,Object> hashMap=new HashMap<>();
+        hashMap.put("subscribtion_id", subid);
+        hashMap.put("pid",product_id);
+        subscribersref.child("subscribers").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child(subid)
+                .updateChildren(hashMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                startActivity(new Intent(getActivity(), Subscriptions.class).putExtra("subid",subid)
+                        .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            }
+        });
     }
 
     private void fillUserDetails() {

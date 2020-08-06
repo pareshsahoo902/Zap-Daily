@@ -10,15 +10,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -46,18 +43,7 @@ import com.paytm.pgsdk.PaytmPGService;
 import com.paytm.pgsdk.PaytmPaymentTransactionCallback;
 import com.thekhaeng.pushdownanim.PushDownAnim;
 import com.zappvtltd.zapdaily.DialogHelper.ProgressDialogLoading;
-import com.zappvtltd.zapdaily.DrawerUI.About;
-import com.zappvtltd.zapdaily.DrawerUI.Account;
-import com.zappvtltd.zapdaily.DrawerUI.Cart;
-import com.zappvtltd.zapdaily.DrawerUI.ContactUS;
-import com.zappvtltd.zapdaily.DrawerUI.Notification;
-import com.zappvtltd.zapdaily.DrawerUI.SavedItem;
-import com.zappvtltd.zapdaily.DrawerUI.SearchActivity;
-import com.zappvtltd.zapdaily.DrawerUI.Subscriptions;
-import com.zappvtltd.zapdaily.Home.HomePage;
-import com.zappvtltd.zapdaily.Models.CartModel;
 import com.zappvtltd.zapdaily.Models.WalletModel;
-import com.zappvtltd.zapdaily.ViewHolder.CartViewHolder;
 import com.zappvtltd.zapdaily.ViewHolder.WalletViewHolder;
 
 import org.json.JSONException;
@@ -100,7 +86,7 @@ public class PaymentActivity extends AppCompatActivity {
             ActivityCompat.requestPermissions(PaymentActivity.this, new String[]{Manifest.permission.READ_SMS, Manifest.permission.RECEIVE_SMS}, 101);
         }
 
-        pay=(CardView) findViewById(R.id.Card_AddMoney);
+        pay=(CardView) findViewById(R.id.Card_Vacation);
         addMoney=findViewById(R.id.Edit_Wallet);
         balance=findViewById(R.id.balance);
         add100=findViewById(R.id.add_100);
@@ -168,7 +154,7 @@ public class PaymentActivity extends AppCompatActivity {
                              case R.id.add_1000:
                                 addMoney.setText("1000");
                                 break;
-                             case R.id.Card_AddMoney:
+                             case R.id.Card_Vacation:
                                  addMoneyToWallet();
                                  break;
 
