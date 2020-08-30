@@ -123,6 +123,7 @@
         app:tsquare_headerTextColor="@color/colorPrimary"
         app:tsquare_titleTextColor="@color/colorPrimaryDark" />
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -190,6 +191,7 @@
                 android:textSize="14dp" />
 
         </androidx.cardview.widget.CardView>
+
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
