@@ -70,8 +70,7 @@ public class LoginActivity extends AppCompatActivity {
                                 verifyUser();
                                 break;
                             case R.id.Card_SKIP:
-                                startActivity(new Intent(LoginActivity.this,HomePage.class)
-                                        .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK));
+                                Toast.makeText(getApplicationContext(),"Please Login! ",Toast.LENGTH_SHORT).show();
                                 break;
 
                         }
